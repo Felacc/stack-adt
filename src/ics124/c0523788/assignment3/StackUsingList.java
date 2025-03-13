@@ -2,24 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ics124.assignment3;
+package ics124.c0523788.assignment3;
+
+import ics124.c0523788.assignment2.Ics124SinglyLinkedList;
+
 
 /**
  *
  * @author felix
  */
-public class StackUsingArray implements Ics124Stack {
-    private Integer[] array;
+public class StackUsingList implements Ics124Stack{
+
+    private Ics124SinglyLinkedList<Integer> data;
     private int size;
     private int i; // current position in array
     
-    public StackUsingArray() {
+    public StackUsingList() {
         this(100);
     }
     
-    public StackUsingArray(int size) {
+    public StackUsingList(int size) {
         this.size = size;
-        this.array = new Integer[size];
+        this.data = new Ics124SinglyLinkedList<>();
         this.i = 0;
     }
     
@@ -28,13 +32,13 @@ public class StackUsingArray implements Ics124Stack {
         return this.size;
     }
     
-    public Integer[] getArray() {
-        return this.array;
+    public Ics124SinglyLinkedList<Integer> getData() {
+        return this.data;
     }
             
     @Override
     public boolean isEmpty() {
-        return this.array[0] == null;
+        return this.data.size() == 0;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class StackUsingArray implements Ics124Stack {
             throw new StackUnderflowException("The stack is empty. Nothing to peek at.");
         }
         
-        return this.array[i - 1];
+        return this.data.get(i-1);
     }
 
     @Override
@@ -57,8 +61,8 @@ public class StackUsingArray implements Ics124Stack {
         if (this.isEmpty()) {
             throw new StackUnderflowException("The stack is empty. Nothing to pop off.");
         }
-        Integer n = this.array[i - 1];
-        this.array[i - 1] = null;
+        Integer n = this.data.get(i - 1);
+        this.data.remove(i - 1);
         this.i--;
         return n;
     }
@@ -70,7 +74,7 @@ public class StackUsingArray implements Ics124Stack {
             throw new StackOverflowException("The stack is full.");
         }
         
-        this.array[i] = a;
+        this.data.add(i, a);
         this.i++;
     }
     

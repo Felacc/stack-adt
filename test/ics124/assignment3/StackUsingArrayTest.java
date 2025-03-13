@@ -4,6 +4,7 @@
  */
 package ics124.assignment3;
 
+import ics124.c0523788.assignment3.StackUsingArray;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,7 +33,7 @@ public class StackUsingArrayTest {
     public void testIsEmpty() {
         StackUsingArray s = new StackUsingArray();
         assertEquals(true, s.isEmpty());
-        s.getArray()[0] = 12;
+        s.getData()[0] = 12;
         assertEquals(false, s.isEmpty());
     }
     
@@ -44,7 +45,7 @@ public class StackUsingArrayTest {
         s.push(10);
         assertEquals(false, s.isEmpty());
         
-        int n = s.getArray()[0];
+        int n = s.getData()[0];
         assertEquals(10, n);
     }
     

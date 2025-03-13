@@ -1,4 +1,4 @@
-package ics124.assignment3;
+package ics124.c0523788.assignment3;
 
 public interface Ics124Stack {
     boolean isEmpty();
