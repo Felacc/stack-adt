@@ -11,6 +11,7 @@ package ics124.assignment3;
 public class StackUsingArray implements Ics124Stack {
     private Integer[] array;
     private int size;
+    private int i; // current position in array
     
     public StackUsingArray() {
         this(100);
@@ -52,7 +53,12 @@ public class StackUsingArray implements Ics124Stack {
 
     @Override
     public void push(Integer a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // check if current position would overflow stack
+        if (i >= size) {
+            throw new StackOverflowException("The stack is full.");
+        }
+        
+        this.array[i] = a;
     }
     
 }
