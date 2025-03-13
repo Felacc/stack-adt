@@ -4,15 +4,18 @@
  */
 package ics124.c0523788.assignment3;
 
+import ics124.c0523788.assignment2.Ics124SinglyLinkedList;
+
 /**
  *
- * @author felix
+ * @author Felix Michel
  */
 public class Ics124Queue<E> {
+    private Ics124SinglyLinkedList<E> list;
     
     // Default Constructor
     public Ics124Queue() {
-        
+        this.list = new Ics124SinglyLinkedList<>();
     }
     
     // Getters and Setters
@@ -20,7 +23,8 @@ public class Ics124Queue<E> {
     
     // Methods
     public boolean add(E e)  {
-        throw new UnsupportedOperationException();
+        this.list.add(0, e);
+        return true;
     }
     
     public E element() {
@@ -32,7 +36,11 @@ public class Ics124Queue<E> {
     }
     
     public E peek() {
-        throw new UnsupportedOperationException();
+        if (list.size() == 0) {
+            return null;
+        }
+        
+        return list.get(0);
     }
     
     public E poll() {

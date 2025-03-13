@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ics124.c0523788.assignment3;
 
 import ics124.c0523788.assignment2.Ics124SinglyLinkedList;
@@ -9,41 +5,24 @@ import ics124.c0523788.assignment2.Ics124SinglyLinkedList;
 
 /**
  *
- * @author felix
+ * @author Felix Michel
  */
 public class StackUsingList implements Ics124Stack{
 
-    private Ics124SinglyLinkedList<Integer> data;
-    private int size;
-    private int i; // current position in array
+    private Ics124SinglyLinkedList<Integer> data;    
     
     public StackUsingList() {
-        this(100);
+        data = new Ics124SinglyLinkedList<>();
     }
     
-    public StackUsingList(int size) {
-        this.size = size;
-        this.data = new Ics124SinglyLinkedList<>();
-        this.i = 0;
-    }
-    
-    // Getters and Setters
-    public int getSize() {
-        return this.size;
-    }
-    
-    public Ics124SinglyLinkedList<Integer> getData() {
-        return this.data;
-    }
-            
     @Override
     public boolean isEmpty() {
-        return this.data.size() == 0;
+        return data.size() == 0;
     }
 
     @Override
     public boolean isFull() {
-        return this.i == size;
+        return false; // an SLL can never be full
         
     }
 
@@ -53,7 +32,7 @@ public class StackUsingList implements Ics124Stack{
             throw new StackUnderflowException("The stack is empty. Nothing to peek at.");
         }
         
-        return this.data.get(i-1);
+        return data.get(data.size() - 1);
     }
 
     @Override
@@ -61,21 +40,16 @@ public class StackUsingList implements Ics124Stack{
         if (this.isEmpty()) {
             throw new StackUnderflowException("The stack is empty. Nothing to pop off.");
         }
-        Integer n = this.data.get(i - 1);
-        this.data.remove(i - 1);
-        this.i--;
+        Integer n = data.get(data.size() - 1);
+        data.remove(data.size() - 1);
         return n;
     }
 
     @Override
     public void push(Integer a) {
-        // check if current position would overflow stack
-        if (i >= size) {
-            throw new StackOverflowException("The stack is full.");
-        }
-        
-        this.data.add(i, a);
-        this.i++;
+        // The stack can't overflow because it uses an SLL, hence not having the list throw an error
+        // The size of the stack is only limited by memory
+        this.data.add(data.size(), a);
     }
     
 }

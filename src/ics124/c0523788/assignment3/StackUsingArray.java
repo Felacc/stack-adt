@@ -1,45 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ics124.c0523788.assignment3;
 
 /**
  *
- * @author felix
+ * @author Felix Michel
  */
 public class StackUsingArray implements Ics124Stack {
     private Integer[] data;
     private int size;
-    private int i; // current position in array
+    private int top; // represents the index of the item on top of the stack; max index is size - 1
     
+    // default stack array size: 8
     public StackUsingArray() {
-        this(100);
+        this(8);
     }
     
     public StackUsingArray(int size) {
         this.size = size;
         this.data = new Integer[size];
-        this.i = 0;
+        this.top = -1; // negative one to represent that this stack does not yet have a top
     }
     
-    // Getters and Setters
-    public int getSize() {
-        return this.size;
-    }
+    // Implementation of interface methods
     
-    public Integer[] getData() {
-        return this.data;
-    }
-            
+    // if the top of the stack is set at 0
     @Override
     public boolean isEmpty() {
-        return this.data[0] == null;
+        return this.top == - 1;
     }
 
     @Override
     public boolean isFull() {
-        return this.i == size;
+        return this.top == size - 1;
         
     }
 
@@ -49,7 +40,7 @@ public class StackUsingArray implements Ics124Stack {
             throw new StackUnderflowException("The stack is empty. Nothing to peek at.");
         }
         
-        return this.data[i - 1];
+        return this.data[top];
     }
 
     @Override
@@ -57,21 +48,21 @@ public class StackUsingArray implements Ics124Stack {
         if (this.isEmpty()) {
             throw new StackUnderflowException("The stack is empty. Nothing to pop off.");
         }
-        Integer n = this.data[i - 1];
-        this.data[i - 1] = null;
-        this.i--;
+        Integer n = this.data[top];
+        this.data[top] = null;
+        this.top--;
         return n;
     }
 
     @Override
     public void push(Integer a) {
         // check if current position would overflow stack
-        if (i >= size) {
+        if (this.isFull()) {
             throw new StackOverflowException("The stack is full.");
         }
         
-        this.data[i] = a;
-        this.i++;
+        this.data[top + 1] = a;
+        this.top++;
     }
     
 }

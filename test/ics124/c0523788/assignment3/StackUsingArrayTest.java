@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
-package ics124.assignment3;
+package ics124.c0523788.assignment3;
 
 import ics124.c0523788.assignment3.StackUsingArray;
 import org.junit.Test;
@@ -10,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author felix
+ * @author Felix Michel
  */
 public class StackUsingArrayTest {
     
@@ -18,47 +14,51 @@ public class StackUsingArrayTest {
     }
     
     @Test
-    public void testDefaultStackSize() {
-        StackUsingArray s = new StackUsingArray();
-        assertEquals(100, s.getSize());
-    }
-    
-    @Test
-    public void testStackOfAssignedSize() {
-        StackUsingArray s = new StackUsingArray(123);
-        assertEquals(123, s.getSize());
-    }
-    
-    @Test
     public void testIsEmpty() {
         StackUsingArray s = new StackUsingArray();
-        assertEquals(true, s.isEmpty());
-        s.getData()[0] = 12;
-        assertEquals(false, s.isEmpty());
+        assertTrue(s.isEmpty());
+        s.push(12);
+        assertFalse(s.isEmpty());
     }
     
     @Test
     public void testPush() {
         StackUsingArray s = new StackUsingArray();
-        assertEquals(true, s.isEmpty());
+        assertTrue(s.isEmpty());
         
         s.push(10);
-        assertEquals(false, s.isEmpty());
+        assertFalse(s.isEmpty());
         
-        int n = s.getData()[0];
+        int n = s.peek();
         assertEquals(10, n);
+    }
+    
+    @Test
+    public void testPushOverflowException() {
+        StackUsingArray s = new StackUsingArray(4);
+        s.push(1); // top index is 0
+        s.push(2); // top index is 1
+        s.push(3); // top index is 2
+        s.push(4); // top index is 3 -- this should pass
+        try {
+            s.push(5); // top index is 4 -- this should fail
+            fail("Does not StackOverflowException");
+        } catch (Exception e) {
+            System.out.println("From testPushOverflowException(): \n" + e);
+            assertNotNull(e);
+        }
     }
     
     @Test
     public void testIsFull() {
         StackUsingArray s = new StackUsingArray(0);
-        assertEquals(true, s.isFull());
+        assertTrue(s.isFull());
         
         StackUsingArray t = new StackUsingArray(1);
-        assertEquals(false, t.isFull());
+        assertFalse(t.isFull());
         
         t.push(1);
-        assertEquals(true, t.isFull());
+        assertTrue(t.isFull());
     }
     
     @Test
@@ -67,19 +67,6 @@ public class StackUsingArrayTest {
         s.push(11);
         int n = s.peek();
         assertEquals(11, n);
-    }
-    
-    @Test
-    public void testPeekWithEmptyStackException() {
-        StackUsingArray s = new StackUsingArray();
-        
-        try {
-            s.peek();
-            fail("StackUnderflowException was not thrown");
-        } catch (Exception e) {
-            System.out.println("From testPeekWithEmptyStackException(): \n" + e);
-            assertNotNull(e);
-        }
     }
     
     @Test
@@ -98,24 +85,24 @@ public class StackUsingArrayTest {
     }
     
     @Test
+    public void testPeekWithEmptyStackException() {
+        StackUsingArray s = new StackUsingArray();
+        
+        try {
+            s.peek();
+            fail("StackUnderflowException was not thrown");
+        } catch (Exception e) {
+            System.out.println("From testPeekWithEmptyStackException(): \n" + e);
+            assertNotNull(e);
+        }
+    }
+    
+    @Test
     public void testPopWithOneValue() {
         StackUsingArray s = new StackUsingArray();
         s.push(32);
         int n = s.pop();
         assertEquals(32, n);
-    }
-    
-    @Test
-    public void testPopWithEmptyStack() {
-        StackUsingArray s = new StackUsingArray();
-        
-        try {
-            int n = s.pop();
-            fail("StackUnderflowException was not thrown");
-        } catch (Exception e) {
-            System.out.println("From testPopWithEmptyStack(): \n" + e);
-            assertNotNull(e);
-        }
     }
     
     @Test
@@ -135,6 +122,21 @@ public class StackUsingArrayTest {
         assertEquals(543, n);
         
     }
+    
+    @Test
+    public void testPopWithEmptyStack() {
+        StackUsingArray s = new StackUsingArray();
+        
+        try {
+            int n = s.pop();
+            fail("StackUnderflowException was not thrown");
+        } catch (Exception e) {
+            System.out.println("From testPopWithEmptyStack(): \n" + e);
+            assertNotNull(e);
+        }
+    }
+    
+    
     
     
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package ics124.assignment3;
+package ics124.c0523788.assignment3;
 
 import ics124.c0523788.assignment3.StackUsingList;
 import org.junit.Test;
@@ -10,55 +10,41 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author felix
+ * @author Felix Michel
  */
 public class StackUsingListTest {
     
     public StackUsingListTest() {
     }
-
-    @Test
-    public void testDefaultStackSize() {
-        StackUsingList s = new StackUsingList();
-        assertEquals(100, s.getSize());
-    }
-    
-    @Test
-    public void testStackOfAssignedSize() {
-        StackUsingList s = new StackUsingList(123);
-        assertEquals(123, s.getSize());
-    }
     
     @Test
     public void testIsEmpty() {
         StackUsingList s = new StackUsingList();
-        assertEquals(true, s.isEmpty());
-        s.getData().add(0, 12);
-        assertEquals(false, s.isEmpty());
+        assertTrue(s.isEmpty());
+        s.push(12);
+        assertFalse(s.isEmpty());
     }
     
     @Test
     public void testPush() {
         StackUsingList s = new StackUsingList();
-        assertEquals(true, s.isEmpty());
+        assertTrue(s.isEmpty());
         
         s.push(10);
-        assertEquals(false, s.isEmpty());
+        assertFalse(s.isEmpty());
         
-        int n = s.getData().get(0);
+        int n = s.peek();
         assertEquals(10, n);
     }
     
     @Test
     public void testIsFull() {
-        StackUsingList s = new StackUsingList(0);
-        assertEquals(true, s.isFull());
-        
-        StackUsingList t = new StackUsingList(1);
-        assertEquals(false, t.isFull());
+        StackUsingList s = new StackUsingList();
+        StackUsingList t = new StackUsingList();
+        assertFalse(t.isFull());
         
         t.push(1);
-        assertEquals(true, t.isFull());
+        assertFalse(t.isFull());
     }
     
     @Test
