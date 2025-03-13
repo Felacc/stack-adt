@@ -74,8 +74,9 @@ public class StackUsingArrayTest {
         
         try {
             s.peek();
-            fail("Expected exception was not thrown");
+            fail("StackUnderflowException was not thrown");
         } catch (Exception e) {
+            System.out.println("From testPeekWithEmptyStackException(): \n" + e);
             assertNotNull(e);
         }
     }
@@ -93,6 +94,45 @@ public class StackUsingArrayTest {
         s.push(6);
         n = s.peek();
         assertEquals(6, n);
+    }
+    
+    @Test
+    public void testPopWithOneValue() {
+        StackUsingArray s = new StackUsingArray();
+        s.push(32);
+        int n = s.pop();
+        assertEquals(32, n);
+    }
+    
+    @Test
+    public void testPopWithEmptyStack() {
+        StackUsingArray s = new StackUsingArray();
+        
+        try {
+            int n = s.pop();
+            fail("StackUnderflowException was not thrown");
+        } catch (Exception e) {
+            System.out.println("From testPopWithEmptyStack(): \n" + e);
+            assertNotNull(e);
+        }
+    }
+    
+    @Test
+    public void testPopWithMultipleValues() {
+        StackUsingArray s = new StackUsingArray();
+        s.push(32);
+        int n = s.pop();
+        assertEquals(32, n);
+        s.push(3);
+        s.push(12);
+        s.push(34443);
+        s.push(4);
+        s.push(345);
+        s.push(234);
+        s.push(543);
+        n = s.pop();
+        assertEquals(543, n);
+        
     }
     
     

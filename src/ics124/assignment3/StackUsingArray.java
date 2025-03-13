@@ -20,6 +20,7 @@ public class StackUsingArray implements Ics124Stack {
     public StackUsingArray(int size) {
         this.size = size;
         this.array = new Integer[size];
+        this.i = 0;
     }
     
     // Getters and Setters
@@ -53,7 +54,13 @@ public class StackUsingArray implements Ics124Stack {
 
     @Override
     public Integer pop() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (this.isEmpty()) {
+            throw new StackUnderflowException("The stack is empty. Nothing to pop off.");
+        }
+        Integer n = this.array[i - 1];
+        this.array[i - 1] = null;
+        this.i--;
+        return n;
     }
 
     @Override
