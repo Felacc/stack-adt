@@ -8,6 +8,9 @@ import ics124.c0523788.assignment2.Ics124SinglyLinkedList;
  * @author Felix Michel
  */
 public class StackUsingList implements Ics124Stack{
+    
+    // Note: for this stack implementation I use the head of the list (index 0) for peek, pop, and push operations
+    //        because it makes the effiency of most methods O(1) instead of O(n)
 
     private Ics124SinglyLinkedList<Integer> data;    
     
@@ -32,7 +35,7 @@ public class StackUsingList implements Ics124Stack{
             throw new StackUnderflowException("The stack is empty. Nothing to peek at.");
         }
         
-        return data.get(data.size() - 1);
+        return data.get(0);
     }
 
     @Override
@@ -40,8 +43,8 @@ public class StackUsingList implements Ics124Stack{
         if (this.isEmpty()) {
             throw new StackUnderflowException("The stack is empty. Nothing to pop off.");
         }
-        Integer n = data.get(data.size() - 1);
-        data.remove(data.size() - 1);
+        Integer n = data.get(0);
+        data.remove(0);
         return n;
     }
 
@@ -49,7 +52,7 @@ public class StackUsingList implements Ics124Stack{
     public void push(Integer a) {
         // The stack can't overflow because it uses an SLL, hence not having the list throw an error
         // The size of the stack is only limited by memory
-        this.data.add(data.size(), a);
+        this.data.add(0, a);
     }
     
 }
