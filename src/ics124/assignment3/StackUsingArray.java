@@ -38,7 +38,8 @@ public class StackUsingArray implements Ics124Stack {
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.i == size;
+        
     }
 
     @Override
@@ -59,6 +60,7 @@ public class StackUsingArray implements Ics124Stack {
         }
         
         this.array[i] = a;
+        this.i++;
     }
     
 }

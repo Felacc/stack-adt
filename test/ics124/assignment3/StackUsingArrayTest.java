@@ -48,6 +48,18 @@ public class StackUsingArrayTest {
         assertEquals(10, n);
     }
     
+    @Test
+    public void testIsFull() {
+        StackUsingArray s = new StackUsingArray(0);
+        assertEquals(true, s.isFull());
+        
+        StackUsingArray t = new StackUsingArray(1);
+        assertEquals(false, t.isFull());
+        
+        t.push(1);
+        assertEquals(true, t.isFull());
+    }
+    
     
     
 }
