@@ -60,6 +60,40 @@ public class StackUsingArrayTest {
         assertEquals(true, t.isFull());
     }
     
+    @Test
+    public void testPeekWithOneValue() {
+        StackUsingArray s = new StackUsingArray();
+        s.push(11);
+        int n = s.peek();
+        assertEquals(11, n);
+    }
+    
+    @Test
+    public void testPeekWithEmptyStackException() {
+        StackUsingArray s = new StackUsingArray();
+        
+        try {
+            s.peek();
+            fail("Expected exception was not thrown");
+        } catch (Exception e) {
+            assertNotNull(e);
+        }
+    }
+    
+    @Test
+    public void testPeekWithMultipleValues() {
+        StackUsingArray s = new StackUsingArray();
+        s.push(11);
+        int n = s.peek();
+        assertEquals(11, n);
+        s.push(11);
+        s.push(32);
+        s.push(423);
+        s.push(1133);
+        s.push(6);
+        n = s.peek();
+        assertEquals(6, n);
+    }
     
     
 }

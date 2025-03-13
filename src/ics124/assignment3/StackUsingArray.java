@@ -44,7 +44,11 @@ public class StackUsingArray implements Ics124Stack {
 
     @Override
     public Integer peek() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (this.isEmpty()) {
+            throw new StackUnderflowException("The stack is empty. Nothing to peek at.");
+        }
+        
+        return this.array[i - 1];
     }
 
     @Override
