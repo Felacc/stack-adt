@@ -9,10 +9,30 @@ package ics124.assignment3;
  * @author felix
  */
 public class StackUsingArray implements Ics124Stack {
-
+    private Integer[] array;
+    private int size;
+    
+    public StackUsingArray() {
+        this(100);
+    }
+    
+    public StackUsingArray(int size) {
+        this.size = size;
+        this.array = new Integer[size];
+    }
+    
+    // Getters and Setters
+    public int getSize() {
+        return this.size;
+    }
+    
+    public Integer[] getArray() {
+        return this.array;
+    }
+            
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.array[0] == null;
     }
 
     @Override
