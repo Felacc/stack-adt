@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * @author Felix Michel
  */
 public class Ics124QueueTest {
-    
+
     public Ics124QueueTest() {
     }
 
@@ -23,7 +23,7 @@ public class Ics124QueueTest {
         int n = q.peek();
         assertEquals(1, n);
     }
-    
+
     public void testAddTwoValues() {
         Ics124Queue<Integer> q = new Ics124Queue();
         q.add(1);
@@ -31,11 +31,11 @@ public class Ics124QueueTest {
         int n = q.element();
         assertEquals(1, n);
     }
-    
+
     @Test
     public void testAddThrowsExeceptionForNullValues() {
         Ics124Queue<Integer> q = new Ics124Queue();
-        
+
         try {
             Integer n = null;
             q.add(n);
@@ -52,16 +52,16 @@ public class Ics124QueueTest {
         q.add(3);
         int n = q.element();
         assertEquals(3, n);
-        
+
         q.add(4);
         n = q.element();
         assertEquals(3, n);
     }
-    
+
     @Test
     public void testElementThrowNoSuchElementException() {
         Ics124Queue<Integer> q = new Ics124Queue();
-        
+
         try {
             q.element();
             fail("Expected NoSuchElementException not thrown.");
@@ -74,7 +74,7 @@ public class Ics124QueueTest {
     @Test
     public void testOffer() {
         Ics124Queue<Integer> q = new Ics124Queue();
-        
+
         q.offer(5);
         int n = q.element();
         assertEquals(5, n);
@@ -92,30 +92,67 @@ public class Ics124QueueTest {
         q.add(7);
         int n = q.peek();
         assertEquals(7, n);
-        
-        q.add(8);
-        n = q.peek();
+
+        n = q.remove();
         assertEquals(7, n);
-        
-        q.remove();
+
+        q.add(8);
+        q.add(11);
         n = q.peek();
         assertEquals(8, n);
 
     }
-    
+
     @Test
     public void testPeekOnEmptyQueue() {
         Ics124Queue<Integer> q = new Ics124Queue();
         assertNull(q.peek());
-        
+
     }
 
     @Test
     public void testPoll() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+        q.add(8);
+        int n = q.peek();
+        assertEquals(8, n);
+
+        n = q.poll();
+        assertEquals(8, n);
+
+        assertNull(q.peek());
+    }
+
+    @Test
+    public void testPollReturnsNullIfQueueIsEmpty() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+        assertNull(q.poll());
     }
 
     @Test
     public void testRemove() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+        q.add(8);
+        int n = q.peek();
+        assertEquals(8, n);
+
+        n = q.remove();
+        assertEquals(8, n);
+
+        assertNull(q.peek());
     }
-    
+
+    @Test
+    public void testRemoveThrowNoSuchElementException() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+
+        try {
+            q.remove();
+            fail("Expected NoSuchElementException not thrown.");
+        } catch (Exception e) {
+            System.out.println("testRemoveThrowNoSuchElementException - passed");
+            assertNotNull(e);
+        }
+    }
+
 }

@@ -53,7 +53,11 @@ public class Ics124Queue<E> {
     }
     
     public E poll() {
-        throw new UnsupportedOperationException();
+        if (queue.size() == 0) {
+            return null;
+        }
+        
+        return queue.remove(0);
     }
     
     public E remove() {
