@@ -28,7 +28,7 @@ public class Ics124QueueTest {
         Ics124Queue<Integer> q = new Ics124Queue();
         q.add(1);
         q.add(32);
-        int n = q.peek();
+        int n = q.element();
         assertEquals(1, n);
     }
     
@@ -52,11 +52,34 @@ public class Ics124QueueTest {
         q.add(3);
         int n = q.element();
         assertEquals(3, n);
+        
+        q.add(4);
+        n = q.element();
+        assertEquals(3, n);
+    }
+    
+    @Test
+    public void testElementThrowNoSuchElementException() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+        
+        try {
+            q.element();
+            fail("Expected NoSuchElementException not thrown.");
+        } catch (Exception e) {
+            System.out.println("testElementThrowNoSuchElementException - passed");
+            assertNotNull(e);
+        }
     }
 
     @Test
     public void testOffer() {
+        Ics124Queue<Integer> q = new Ics124Queue();
         
+        q.offer(5);
+        assertEquals(5, q.element());
+        assertEquals()
+        
+
     }
 
     @Test

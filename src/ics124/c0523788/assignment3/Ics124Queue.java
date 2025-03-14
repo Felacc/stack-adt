@@ -1,6 +1,7 @@
 package ics124.c0523788.assignment3;
 
 import ics124.c0523788.assignment2.Ics124SinglyLinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 /**
@@ -26,7 +27,11 @@ public class Ics124Queue<E> {
     }
     
     public E element() {
-      
+        if (queue.size() == 0) {
+            throw new NoSuchElementException("Cannot view element, the queue is empty.");
+        }
+        
+        return queue.get(0);
     }
     
     public boolean offer(E e){
