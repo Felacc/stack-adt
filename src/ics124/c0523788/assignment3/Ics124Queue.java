@@ -23,7 +23,7 @@ public class Ics124Queue<E> {
         }
         
         queue.add(queue.size(), e);
-        return true; // will never throw IllegalStateException since the SLL is unbounded
+        return true; // will never be false since the SLL is unbounded
     }
     
     public E element() {
@@ -35,7 +35,13 @@ public class Ics124Queue<E> {
     }
     
     public boolean offer(E e){
-        throw new UnsupportedOperationException();
+        // Not sure how this is supposed to be any different than add rn?
+        if (e == null) {
+            throw new NullPointerException(e + " is null. Null elements not permitted.");
+        }
+        
+        queue.add(queue.size(), e);
+        return true; // will never false since the SLL is unboundeds
     }
     
     public E peek() {
@@ -51,7 +57,10 @@ public class Ics124Queue<E> {
     }
     
     public E remove() {
-        throw new UnsupportedOperationException();
+        if (queue.size() == 0) {
+            throw new NoSuchElementException("Cannot remove element, the queue is empty.");
+        }
+        return queue.remove(0);
     }
     
     

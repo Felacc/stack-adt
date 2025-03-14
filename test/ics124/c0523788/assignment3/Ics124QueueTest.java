@@ -76,14 +76,38 @@ public class Ics124QueueTest {
         Ics124Queue<Integer> q = new Ics124Queue();
         
         q.offer(5);
-        assertEquals(5, q.element());
-        assertEquals()
-        
-
+        int n = q.element();
+        assertEquals(5, n);
+        q.offer(6);
+        n = q.element();
+        assertEquals(5, n);
+        q.remove();
+        n = q.element();
+        assertEquals(6, n);
     }
 
     @Test
     public void testPeek() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+        q.add(7);
+        int n = q.peek();
+        assertEquals(7, n);
+        
+        q.add(8);
+        n = q.peek();
+        assertEquals(7, n);
+        
+        q.remove();
+        n = q.peek();
+        assertEquals(8, n);
+
+    }
+    
+    @Test
+    public void testPeekOnEmptyQueue() {
+        Ics124Queue<Integer> q = new Ics124Queue();
+        assertNull(q.peek());
+        
     }
 
     @Test
